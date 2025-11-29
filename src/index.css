@@ -1,15 +1,424 @@
-/* 
-  Welcome to your new project!
-  We will add your global styles here together.
-*/
+/* ============================================
+   🌌 ZENTASK - GLOBAL STYLES & DESIGN SYSTEM
+   ============================================
+   
+   This file contains:
+   1. CSS Variables (Design Tokens)
+   2. Global Resets
+   3. Utility Classes (glass-card, buttons, etc.)
+   
+   Component-specific styles go in separate files!
+   ============================================ */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+
+/* ============================================
+   1️⃣ CSS VARIABLES (Design Tokens)
+   ============================================
+   Define all colors, spacing, fonts HERE.
+   Use them everywhere with var(--variable-name)
+   ============================================ */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* === COLORS === */
+
+  /* Background Colors (Dark Mode) */
+  --bg-primary: #0a0a0f;
+  /* Main background - deep black */
+  --bg-secondary: #13131a;
+  /* Cards, sections - slightly lighter */
+  --bg-tertiary: #1a1a24;
+  /* Hover states - even lighter */
+
+  /* Neon Accent Colors (Cyber vibe) */
+  --color-purple: #a855f7;
+  /* Primary accent */
+  --color-blue: #3b82f6;
+  /* Secondary accent */
+  --color-cyan: #06b6d4;
+  /* Tertiary accent */
+  --color-pink: #ec4899;
+  /* Alert/special */
+  --color-green: #10b981;
+  /* Success */
+
+  /* Text Colors (Light text on dark bg) */
+  --text-primary: #f8fafc;
+  /* Main text - almost white */
+  --text-secondary: #cbd5e1;
+  /* Less important text */
+  --text-muted: #64748b;
+  /* Placeholder, disabled */
+
+  /* Glassmorphism Properties */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  /* Semi-transparent */
+  --glass-border: rgba(255, 255, 255, 0.1);
+  /* Subtle border */
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  /* Depth */
+
+  /* === SPACING SCALE === */
+  --space-xs: 0.25rem;
+  /* 4px */
+  --space-sm: 0.5rem;
+  /* 8px */
+  --space-md: 1rem;
+  /* 16px */
+  --space-lg: 1.5rem;
+  /* 24px */
+  --space-xl: 2rem;
+  /* 32px */
+  --space-2xl: 3rem;
+  /* 48px */
+
+  /* === TYPOGRAPHY === */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  /* For headings */
+
+  --text-xs: 0.75rem;
+  /* 12px */
+  --text-sm: 0.875rem;
+  /* 14px */
+  --text-base: 1rem;
+  /* 16px */
+  --text-lg: 1.125rem;
+  /* 18px */
+  --text-xl: 1.25rem;
+  /* 20px */
+  --text-2xl: 1.5rem;
+  /* 24px */
+  --text-3xl: 1.875rem;
+  /* 30px */
+  --text-4xl: 2.25rem;
+  /* 36px */
+
+  /* === BORDER RADIUS === */
+  --radius-sm: 0.375rem;
+  /* 6px */
+  --radius-md: 0.5rem;
+  /* 8px */
+  --radius-lg: 0.75rem;
+  /* 12px */
+  --radius-xl: 1rem;
+  /* 16px */
+
+  /* === TRANSITIONS === */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}
+
+/* ============================================
+   2️⃣ GLOBAL RESET & BASE STYLES
+   ============================================ */
+
+/* Reset margins, padding, box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+ul {
+  list-style: none;
 }
 
 body {
-  margin: 0;
-  min-width: 320px;
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1.6rem;
+  line-height: 1.6;
   min-height: 100vh;
+  overflow-x: hidden;
+
+  /* Animated gradient background (subtle cyber vibe) */
+  background-image:
+    radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.1) 0px, transparent 50%);
+}
+
+/* Typography defaults */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: var(--text-4xl);
+}
+
+h2 {
+  font-size: var(--text-3xl);
+}
+
+h3 {
+  font-size: var(--text-2xl);
+}
+
+h4 {
+  font-size: var(--text-xl);
+}
+
+p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+/* Remove number input spinners (arrows) for cleaner design */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+
+/* ============================================
+   3️⃣ UTILITY CLASSES
+   ============================================
+   Reusable classes - NOT component-specific!
+   Use these across components.
+   ============================================ */
+
+/* === GLASSMORPHISM CARD === */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  /* Safari support */
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--glass-shadow);
+  transition: all var(--transition-base);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* === BUTTONS === */
+button {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all var(--transition-base);
+}
+
+/* Primary button - gradient with glow */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-blue) 100%);
+  color: white;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary button - glass style */
+.btn-secondary {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-purple);
+}
+
+/* === TEXT UTILITIES === */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* === SPACING UTILITIES === */
+/* Margin */
+.mt-sm {
+  margin-top: var(--space-sm);
+}
+
+.mt-md {
+  margin-top: var(--space-md);
+}
+
+.mt-lg {
+  margin-top: var(--space-lg);
+}
+
+.mt-xl {
+  margin-top: var(--space-xl);
+}
+
+.mb-sm {
+  margin-bottom: var(--space-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--space-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--space-lg);
+}
+
+.mb-xl {
+  margin-bottom: var(--space-xl);
+}
+
+/* Padding */
+.p-sm {
+  padding: var(--space-sm);
+}
+
+.p-md {
+  padding: var(--space-md);
+}
+
+.p-lg {
+  padding: var(--space-lg);
+}
+
+.p-xl {
+  padding: var(--space-xl);
+}
+
+/* === FLEXBOX UTILITIES === */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.gap-sm {
+  gap: var(--space-sm);
+}
+
+.gap-md {
+  gap: var(--space-md);
+}
+
+.gap-lg {
+  gap: var(--space-lg);
+}
+
+/* === LAYOUT === */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.d--grid {
+  display: grid;
+}
+
+/* ============================================
+   4️⃣ ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.8);
+  }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.neon-glow {
+  animation: glow 2s ease-in-out infinite;
 }

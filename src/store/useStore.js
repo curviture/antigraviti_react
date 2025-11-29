@@ -5,7 +5,7 @@ const useStore = create(persist(
     (set) => ({
         tasks: [],
         user: {
-            level: 1,
+            level: 0,
             currentXp: 0,
             xpToNextLevel: 100,
             streak: 0,
@@ -51,6 +51,10 @@ const useStore = create(persist(
                 }
             }
         }),
+
+        deleteTask: (id) => set((state) => ({
+            tasks: state.tasks.filter(task => task.id !== id)
+        }))
     }),
     {
         name: 'zenstack-storage'

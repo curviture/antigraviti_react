@@ -1,0 +1,67 @@
+/* ============================================
+   TASK INPUT COMPONENT STYLES (BEM)
+   ============================================ */
+
+/* Block */
+.task-input {
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg) var(--space-md);
+
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+}
+
+/* Elements */
+.task-input__form {
+    /* TODO: Add your layout here (Grid or Flex) */
+
+
+}
+
+.task-input__group {
+    /* TODO: Add your layout here */
+}
+
+.task-input__label {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    font-weight: 500;
+
+    margin-right: var(--space-sm);
+
+}
+
+/* Input Fields */
+.task-input__field {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md) var(--space-lg);
+    color: var(--text-primary);
+    font-size: var(--text-lg);
+    font-family: var(--font-sans);
+    transition: all var(--transition-base);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.task-input__field:focus {
+    outline: none;
+    border-color: var(--color-purple);
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.task-input__field::placeholder {
+    color: var(--text-muted);
+}
+
+/* Modifier for XP input (narrower width) */
+.task-input__field--xp {
+    width: 120px;
+}
+
+/* Submit button container */
+.task-input__button-container {
+    /* Align with inputs */
+}

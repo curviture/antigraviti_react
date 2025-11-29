@@ -1,0 +1,75 @@
+/* TaskItem Component Styles
+   Using global design tokens from index.css */
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+    margin-bottom: var(--space-sm);
+}
+
+.task-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+}
+
+/* Title uses global h4 styles, just need flex behavior */
+.task-item__title {
+    flex: 1;
+    margin: 0;
+    /* Override global p margin */
+}
+
+/* Completed state */
+.task-item--completed .task-item__title {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+/* XP Badge */
+.task-item__xp {
+    background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+    color: white;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    min-width: 50px;
+    text-align: center;
+}
+
+/* Toggle Button - uses global button styles, just add specific colors */
+.task-item__toggle {
+    background: var(--glass-bg);
+    border: 1px solid var(--color-green);
+    color: var(--color-green);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+}
+
+.task-item__toggle:hover {
+    background: var(--color-green);
+    color: white;
+}
+
+/* Delete Button */
+.task-item__delete {
+    background: var(--glass-bg);
+    border: 1px solid var(--color-pink);
+    color: var(--color-pink);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+}
+
+.task-item__delete:hover {
+    background: var(--color-pink);
+    color: white;
+}
