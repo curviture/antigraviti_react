@@ -27,7 +27,7 @@
             var(--color-blue) 50%,
             var(--color-cyan) 100%);
     border-radius: var(--radius-lg);
-    transition: width 0.5s ease-out;
+    transition: width 1s ease-out;
     position: relative;
 
     /* Glow effect */
@@ -37,7 +37,8 @@
 
     /* Animated shine effect */
     background-size: 200% 100%;
-    animation: shimmer 2s infinite;
+    animation: shimmer 2s 1;
+    transition: width 1s ease-out;
 }
 
 /* Shimmer animation for progress bar */
