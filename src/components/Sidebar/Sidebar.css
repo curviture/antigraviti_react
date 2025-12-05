@@ -1,0 +1,178 @@
+/* ============================================
+   SIDEBAR COMPONENT STYLES (BEM)
+   ============================================ */
+
+.sidebar {
+    padding: var(--space-xl);
+    height: 100%;
+    overflow-y: auto;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow);
+}
+
+.sidebar__title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-xl);
+    background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.sidebar__stats__title {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+    font-weight: 500;
+}
+
+.sidebar__stats__subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+    font-weight: 400;
+}
+
+/* Today Stats Container */
+.sidebar__today {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-md);
+}
+
+/* Individual Stat Card */
+.sidebar__today__stats {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--glass-shadow);
+    transition: all var(--transition-base);
+    flex-basis: 48%;
+    text-align: center;
+}
+
+.sidebar__today__stats:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.sidebar__today__stats__icon {
+    margin-bottom: var(--space-sm);
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar__today__stats p {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    background: linear-gradient(135deg, var(--color-purple), var(--color-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Streak Section */
+.sidebar__streak {
+    margin-top: var(--space-xl);
+}
+
+.sidebar__streak__card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--glass-shadow);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    transition: all var(--transition-base);
+}
+
+.sidebar__streak__card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.sidebar__streak__icon {
+    font-size: 2.5rem;
+    animation: flamePulse 2s infinite ease-in-out;
+}
+
+.sidebar__streak__info h4 {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.sidebar__streak__info p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+@keyframes flamePulse {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 2px orange);
+    }
+
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 10px orange);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 2px orange);
+    }
+}
+
+/* Weekly Chart */
+.sidebar__chart {
+    margin-top: var(--space-xl);
+}
+
+.sidebar__chart__container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--glass-shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 150px;
+}
+
+.sidebar__chart__bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    flex: 1;
+}
+
+.sidebar__chart__bar {
+    width: 8px;
+    background: linear-gradient(to top, var(--color-purple), var(--color-blue));
+    border-radius: var(--radius-sm);
+    transition: height 0.5s ease-out;
+    min-height: 4px;
+}
+
+.sidebar__chart__label {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+}
