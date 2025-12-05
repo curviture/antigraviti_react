@@ -8,6 +8,9 @@
     width: 100%;
     --animation-duration: 1.25s;
     --animation-delay: calc(var(--animation-duration) * 0.75);
+    --triangle-size: 8px;
+    --level-up-color: var(--color-green);
+    --level-down-color: #ff0000;
 }
 
 /* loading animation order: 1 */
@@ -22,6 +25,55 @@
     animation: fadeInRight50 var(--animation-duration) calc(var(--animation-delay) * 2) ease-out 1 backwards;
     padding-bottom: 0;
     margin-bottom: 0;
+}
+
+
+.header__xp__block {
+    padding: var(--space-xs);
+}
+
+.header__xp--level-up {
+    color: var(--level-up-color);
+}
+
+.header__xp--level-down {
+    color: var(--level-down-color);
+}
+
+.header__xp__block--level {
+    min-width: 4ch;
+    text-align: right;
+    position: relative;
+}
+
+
+.header__xp__block--level-up::before,
+.header__xp__block--level-down::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: var(--triangle-size) solid transparent;
+    border-right: var(--triangle-size) solid transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-60%, -50%);
+}
+
+.header__xp__block--level-up::before {
+    /* make triangle up */
+    border-bottom: var(--triangle-size) solid currentColor;
+}
+
+.header__xp__block--level-down::before {
+    /* make triangle down */
+    border-top: var(--triangle-size) solid currentColor;
+}
+
+/* loading animation order: 4 */
+
+.header__logout {
+    animation: fadeIn var(--animation-duration) calc(var(--animation-delay) * 2.5) ease-out 1 backwards;
 }
 
 /* loading animation order: 2 */
