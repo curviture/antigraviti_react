@@ -8,8 +8,6 @@ function TaskList() {
 
     const tasks = useStore((state) => state.tasks)
 
-    console.log(tasks)
-
     return (
         <div>
             <h3>TaskList</h3>
