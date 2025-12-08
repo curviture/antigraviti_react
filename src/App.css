@@ -10,6 +10,7 @@
 .app {
     grid-template-columns: 1fr 2fr;
     grid-template-rows: auto 1fr;
+    gap: var(--space-xl) calc(var(--space-lg) * 1.2);
 }
 
 .app__header {

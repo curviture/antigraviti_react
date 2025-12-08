@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import './Sidebar.css'
 import useStore from '../../store/useStore'
+import Chart from './Chart/Chart'
 
 function Sidebar() {
 
@@ -10,7 +11,9 @@ function Sidebar() {
 
     const today = new Date().toISOString().split('T')[0]
 
-    const todayHistory = history.timeLine.get(today) || { tasksDone: 0, xp: 0, tasksUndone: 0 }
+    // console.log('history.timeLine', history.timeLine)
+
+    const todayHistory = history.timeLine && history.timeLine.get(today) || { tasksDone: 0, xp: 0, tasksUndone: 0 }
 
     return (
         <div className="sidebar">
@@ -20,7 +23,7 @@ function Sidebar() {
                 <div className="sidebar__today flex justify-between items-center">
                     <div className="sidebar__today__stats">
                         <div className="sidebar__today__stats__icon">
-                            <svg width="60" height="60" viewBox="0 0 60 60">
+                            <svg width="40" height="40" viewBox="0 0 40 40">
                                 <defs>
                                     <linearGradient id="rainbowGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" style={{ stopColor: '#a855f7', stopOpacity: 1 }} />
@@ -28,8 +31,8 @@ function Sidebar() {
                                         <stop offset="100%" style={{ stopColor: '#06b6d4', stopOpacity: 1 }} />
                                     </linearGradient>
                                 </defs>
-                                <circle cx="30" cy="30" r="28" fill="url(#rainbowGradient1)" />
-                                <path d="M 18 30 L 26 38 L 42 22" stroke="white" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                                <circle cx="20" cy="20" r="19" fill="url(#rainbowGradient1)" />
+                                <path d="M 12 20 L 18 26 L 28 14" stroke="white" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </div>
                         <h4 className="sidebar__stats__subtitle">Tasks completed</h4>
@@ -37,7 +40,7 @@ function Sidebar() {
                     </div>
                     <div className="sidebar__today__stats">
                         <div className="sidebar__today__stats__icon">
-                            <svg width="60" height="60" viewBox="0 0 60 60">
+                            <svg width="40" height="40" viewBox="0 0 40 40">
                                 <defs>
                                     <linearGradient id="rainbowGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" style={{ stopColor: '#ec4899', stopOpacity: 1 }} />
@@ -45,8 +48,9 @@ function Sidebar() {
                                         <stop offset="100%" style={{ stopColor: '#3b82f6', stopOpacity: 1 }} />
                                     </linearGradient>
                                 </defs>
-                                <circle cx="30" cy="30" r="28" fill="url(#rainbowGradient2)" />
-                                <path d="M 30 12 L 35 23 L 47 25 L 38 34 L 40 46 L 30 40 L 20 46 L 22 34 L 13 25 L 25 23 Z" fill="white" stroke="white" strokeWidth="1" />
+                                <circle cx="20" cy="20" r="19" fill="url(#rainbowGradient2)" />
+                                {/* Scaled down path for lightning/star approx */}
+                                <path d="M 20 8 L 23 15 L 31 16 L 25 22 L 27 30 L 20 26 L 13 30 L 15 22 L 9 16 L 17 15 Z" fill="white" stroke="white" strokeWidth="1" />
                             </svg>
                         </div>
                         <h4 className="sidebar__stats__subtitle">XP earned</h4>
@@ -65,32 +69,7 @@ function Sidebar() {
                     </div>
                 </div>
 
-                <div className="sidebar__chart">
-                    <h3 className="sidebar__stats__title">Last 7 Days</h3>
-                    <div className="sidebar__chart__container">
-                        {[...Array(7)].map((_, i) => {
-                            const d = new Date();
-                            d.setDate(d.getDate() - (6 - i));
-                            const dateStr = d.toISOString().split('T')[0];
-                            const dayData = history.timeLine.get(dateStr) || { xp: 0 };
-                            const height = Math.min(dayData.xp / 2, 100); // Scale: 200xp = 100% height
-
-                            return (
-                                <div key={i} className="sidebar__chart__bar-group">
-                                    <div
-                                        className="sidebar__chart__bar"
-                                        style={{ height: `${height}%` }}
-                                        title={`${dateStr}: ${dayData.xp} XP`}
-                                    ></div>
-                                    <span className="sidebar__chart__label">
-                                        {d.toLocaleDateString('en-US', { weekday: 'narrow' })}
-                                    </span>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
-
+                <Chart history={history} />
             </div>
         </div>
     )

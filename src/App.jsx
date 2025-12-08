@@ -7,6 +7,7 @@ import Header from './components/Header/Header'
 import Sidebar from './components/Sidebar/Sidebar'
 
 import useStore from './store/useStore'
+import TestControl from './components/TestControl/TestControl'
 
 function App() {
 
@@ -33,7 +34,7 @@ function App() {
       <div className="app__main">
         <Tasks />
       </div>
-
+      <TestControl />
     </div>
   )
 }
