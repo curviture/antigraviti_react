@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-
+import React, { useState, useEffect } from 'react'
+import clsx from 'clsx'
 import './Header.css'
 import useStore from '../../store/useStore';
 
@@ -7,49 +7,107 @@ import ProgressBar from './ProgressBar'
 
 function Header() {
     const user = useStore((state) => state.user)
+    const levelUpCache = useStore((state) => state.levelUpCache)
+
     const { level, currentXp, xpToNextLevel } = user
 
-    const [localLevel, setLocalLevel] = useState(level)
-    const [localProgress, setLocalProgress] = useState(0)
+    const [displayLevel, setDisplayLevel] = useState(level);
+    const [displayXp, setDisplayXp] = useState(currentXp);
+    const [displayXpToNextLevel, setDisplayXpToNextLevel] = useState(xpToNextLevel);
+    const [levelChange, setLevelChange] = useState(false);
+    const [xpChangeAnimation, setXpChangeAnimation] = useState(false);
 
-    const onProgressTransitionEnd = () => {
-        if (level > localLevel) {
-            setLocalLevel(prev => prev + 1)
-            setLocalProgress(0)
+    const handleXpChange = () => {
+        if (levelChange === 'up') {
+            const newLevel = displayLevel + 1
+            setDisplayLevel(prev => prev + 1)
+            setDisplayXp(levelUpCache[newLevel - 1].xp)
+            setDisplayXpToNextLevel(levelUpCache[newLevel].xp)
         }
 
-        if (level < localLevel) {
-            setLocalLevel(prev => prev - 1)
-            setLocalProgress(100)
+        if (levelChange === 'down') {
+            const newLevel = displayLevel - 1
+            setDisplayLevel(prev => prev - 1)
+            setDisplayXp(levelUpCache[newLevel].xp)
+            setDisplayXpToNextLevel(levelUpCache[newLevel + 1].xp)
         }
-    };
+
+        if (levelChange === false) {
+            setDisplayXp(currentXp)
+            setDisplayXpToNextLevel(xpToNextLevel)
+            setDisplayLevel(level)
+            setLevelChange(false)
+        }
+
+        if (levelChange === false && displayXp !== currentXp) {
+            setXpChangeAnimation(false)
+        }
+    }
 
     useEffect(() => {
-        if (level > localLevel) {
-            setLocalProgress(100);
+
+        if (displayLevel === level) {
+            setLevelChange(false)
         }
 
-        if (level < localLevel) {
-            setLocalProgress(0);
+        if (displayLevel < level) {
+            setXpChangeAnimation('up')
+
+            setLevelChange('up');
         }
 
-        if (level === localLevel) {
-            setLocalProgress(Math.floor(currentXp / xpToNextLevel) * 100)
+        if (displayLevel > level) {
+            setXpChangeAnimation('down')
+            setLevelChange('down');
         }
 
-    }, [level, localLevel]);
+
+    }, [level, displayLevel, levelChange]);
+
+
+    const progressPercent = Math.floor(currentXp / xpToNextLevel * 100)
+
+    const levelUpBlockClass = clsx(
+        'header__xp__block header__xp__block--level',
+        {
+            'header__xp__block--level-up': xpChangeAnimation === 'up',
+            'header__xp__block--level-down': xpChangeAnimation === 'down',
+        }
+    )
+
+    const headerXpClass = clsx(
+        'header__xp flex items-center',
+        {
+            'header__xp--level-up': xpChangeAnimation === 'up',
+            'header__xp--level-down': xpChangeAnimation === 'down',
+        }
+    )
 
     return (
         <div className="header flex mt-xl items-center justify-evenly">
             <h1 className="header__title ">ZenTask</h1>
             <div>
                 <ProgressBar
-                    percent={localProgress}
-                    transitionEndHandler={onProgressTransitionEnd}
+                    percent={progressPercent}
+                    levelChange={levelChange}
+                    displayLevel={displayLevel}
+                    handleLevelChange={handleXpChange}
+
                 />
             </div>
-            <p>Level {level} | {currentXp}/{xpToNextLevel}   XP</p>
-            <button>Logout</button>
+            <div className={headerXpClass}>
+                <div className="header__xp__block">Level</div>
+                <div className={levelUpBlockClass}>
+                    {displayLevel}
+                </div>
+                <div className="header__xp__block">|</div>
+                <div className="header__xp__block">{displayXp}</div>
+                <div className="header__xp__block">/</div>
+                <div className="header__xp__block">{displayXpToNextLevel}</div>
+                <div className="header__xp__block">XP</div>
+            </div>
+            <button className="btn-logout header__logout">Logout</button>
+            {import.meta.env.DEV && <button onClick={() => useStore.getState().resetStore()}>Reset</button>}
         </div>
     )
 }

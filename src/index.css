@@ -231,6 +231,23 @@ button {
   transition: all var(--transition-base);
 }
 
+/* Base button class - shared styles */
+.btn {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--text-base);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  text-decoration: none;
+}
+
 /* Primary button - gradient with glow */
 .btn-primary {
   background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-blue) 100%);
@@ -263,6 +280,84 @@ button {
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: var(--color-purple);
+}
+
+/* Ghost button - ultra minimal, for logout/actions */
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  /* Bright white text */
+  padding: var(--space-md) var(--space-lg);
+  /* Larger padding */
+  border-radius: var(--radius-md);
+  font-size: var(--text-lg);
+  /* Even larger text */
+  font-weight: 600;
+  backdrop-filter: blur(5px);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  /* Pure white on hover */
+  transform: translateY(-1px);
+}
+
+.btn-ghost:active {
+  transform: translateY(0);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Red logout button - destructive action */
+.btn-logout {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.2));
+  border: 2px solid rgba(239, 68, 68, 0.5);
+  color: #ffffff;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-md);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  transition: all var(--transition-base);
+}
+
+.btn-logout:hover {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(220, 38, 38, 0.4));
+  border-color: rgba(239, 68, 68, 0.8);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-logout:active {
+  transform: translateY(0);
+}
+
+/* Green login button - positive action */
+.btn-login {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2));
+  border: 2px solid rgba(16, 185, 129, 0.5);
+  color: #ffffff;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-md);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  transition: all var(--transition-base);
+}
+
+.btn-login:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(5, 150, 105, 0.4));
+  border-color: rgba(16, 185, 129, 0.8);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-login:active {
+  transform: translateY(0);
 }
 
 /* === TEXT UTILITIES === */
@@ -393,12 +488,46 @@ button {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn20 {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft50 {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight50 {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -416,7 +545,7 @@ button {
 
 /* Animation utility classes */
 .animate-fade-in {
-  animation: fadeIn 0.5s ease-out;
+  animation: fadeIn20 0.5s ease-out;
 }
 
 .neon-glow {

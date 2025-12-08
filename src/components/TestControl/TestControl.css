@@ -1,0 +1,37 @@
+.test-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+}
+
+.test-control__btn {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.test-control__btn:hover {
+    background-color: #45a049;
+}
+
+.test-control__btn--danger {
+    background-color: #f44336;
+}
+
+.test-control__btn--danger:hover {
+    background-color: #d32f2f;
+}
