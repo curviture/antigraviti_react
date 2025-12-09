@@ -14,7 +14,7 @@
 /* Elements */
 .task-input__form {
     /* TODO: Add your layout here (Grid or Flex) */
-
+    flex-wrap: wrap;
 
 }
 
@@ -62,6 +62,8 @@
 }
 
 /* Submit button container */
-.task-input__button-container {
-    /* Align with inputs */
+.task-input__button-container,
+.task-input__group--timing {
+    flex-basis: 100%;
+    text-align: center;
 }

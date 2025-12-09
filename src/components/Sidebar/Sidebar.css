@@ -84,7 +84,10 @@
     margin-top: var(--space-xl);
 }
 
-.sidebar__streak__card {
+.sidebar__streak_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -97,6 +100,8 @@
     gap: var(--space-md);
     transition: all var(--transition-base);
 }
+
+.sidebar__streak__card {}
 
 .sidebar__streak__card:hover {
     background: rgba(255, 255, 255, 0.08);

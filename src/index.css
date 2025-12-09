@@ -310,6 +310,11 @@ button {
   background: rgba(255, 255, 255, 0.05);
 }
 
+.btn-lg {
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--text-xl);
+}
+
 /* Red logout button - destructive action */
 .btn-logout {
   background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.2));

@@ -1,0 +1,31 @@
+.heatgrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    width: 150px
+}
+
+.heatgrid__item {
+    background-color: transparent;
+    /* border-radius: 50%; */
+    width: 10px;
+    height: 10px;
+}
+
+.heatgrid__item--low {
+    background-color: #3b82f6;
+}
+
+.heatgrid__item--medium {
+    background-color: #ecaa48;
+}
+
+.heatgrid__item--high {
+    background-color: #ec4899;
+}
+
+.heatgrid__item--empty {
+    background-color: var(--glass-bg);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: var(--glass-shadow);
+}

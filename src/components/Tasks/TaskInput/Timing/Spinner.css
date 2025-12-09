@@ -1,0 +1,129 @@
+/* Spinner.css */
+
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    user-select: none;
+    width: 380px;
+    /* Widened to accommodate arrows */
+    margin: var(--space-md) auto;
+    padding: var(--space-sm) 0;
+}
+
+/* Row wrapper for controls + track */
+.spinner-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2px;
+}
+
+.spinner-track {
+    display: flex;
+    flex: 1;
+    /* Take remaining space */
+    height: 50px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    align-items: center;
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    position: relative;
+    z-index: 1;
+}
+
+.spinner-track::-webkit-scrollbar {
+    display: none;
+}
+
+.spinner-item {
+    flex: 0 0 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: center;
+
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    /* Hide non-selected items */
+    opacity: 0;
+    pointer-events: none;
+    /* Prevent clicking hidden items if desired, or keep generic pointer-events */
+}
+
+.spinner-item.selected {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: var(--text-lg);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.spinner-padder-horizontal {
+    /* 
+       Padder calculation adjustment:
+       If Track width is variable now, hardcoding 100px padder might be slightly off visually if not exactly 300px total.
+       But assuming item is 100px, we want ~ center. 
+       Let's stick to 100px for now as a rough "half-width" minus "half-item".
+    */
+    flex: 0 0 calc(50% - 50px);
+    height: 100%;
+}
+
+/* Highlight Bar */
+.spinner-highlight {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Controls */
+.spinner-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    padding: 0 var(--space-xs);
+}
+
+.spinner-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.spinner-btn:hover {
+    color: var(--color-purple);
+}
+
+.spinner-btn svg {
+    display: block;
+}

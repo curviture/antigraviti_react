@@ -2,11 +2,14 @@ import { useState } from 'react'
 import './TaskInput.css'
 import useStore from '../../../store/useStore'
 
+import Timing from './Timing/Timing'
+
 function TaskInput() {
 
     const addTask = useStore((state) => state.addTask)
     const [title, setTitle] = useState('')
-    const [xp, setXp] = useState(0)
+    const [xp, setXp] = useState(0);
+    const [timingOn, setTimingOn] = useState(false)
 
     const addTaskHandler = () => {
 
@@ -46,8 +49,19 @@ function TaskInput() {
                         placeholder='10'
                     />
                 </div>
-                <div className="task-input__button-container">
-                    <button className="btn-primary" onClick={addTaskHandler}>
+                <div className="task-input__group">
+                    <label htmlFor="task-timing" className="task-input__label">Timing</label>
+                    <button
+                        className="btn-primary task-input_timing--button"
+                        onClick={() => setTimingOn(!timingOn)}>
+                        Timing
+                    </button>
+                </div>
+                <div className="task-input__group task-input__group--timing">
+                    {timingOn && <Timing />}
+                </div>
+                <div className="task-input__button-container mt-xl">
+                    <button className="btn-primary btn-lg" onClick={addTaskHandler}>
                         Add Task
                     </button>
                 </div>
