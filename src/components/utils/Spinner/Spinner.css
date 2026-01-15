@@ -10,7 +10,7 @@
     border-radius: var(--radius-lg);
     overflow: hidden;
     user-select: none;
-    width: 380px;
+    width: 180px;
     /* Widened to accommodate arrows */
     margin: var(--space-md) auto;
     padding: var(--space-sm) 0;
@@ -28,7 +28,8 @@
     display: flex;
     flex: 1;
     /* Take remaining space */
-    height: 50px;
+    font-size: var(--text-md);
+    height: calc(var(--space-md) + var(--space-sm));
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
@@ -47,14 +48,14 @@
 }
 
 .spinner-item {
-    flex: 0 0 100px;
+    flex: 0 0 60px;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     scroll-snap-align: center;
 
-    font-size: var(--text-md);
+    /* font-size: var(--text-md); */
     color: var(--text-secondary);
     transition: all 0.2s ease;
     cursor: pointer;
@@ -76,11 +77,11 @@
 .spinner-padder-horizontal {
     /* 
        Padder calculation adjustment:
-       If Track width is variable now, hardcoding 100px padder might be slightly off visually if not exactly 300px total.
-       But assuming item is 100px, we want ~ center. 
-       Let's stick to 100px for now as a rough "half-width" minus "half-item".
+       Item width is 60px.
+       We want to center the item.
+       calc(50% - (itemWidth / 2)) = calc(50% - 30px).
     */
-    flex: 0 0 calc(50% - 50px);
+    flex: 0 0 calc(50% - 30px);
     height: 100%;
 }
 
@@ -90,7 +91,7 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
+    width: 60px;
     height: 100%;
     background: rgba(255, 255, 255, 0.05);
     border-left: 1px solid rgba(255, 255, 255, 0.1);
@@ -126,4 +127,28 @@
 
 .spinner-btn svg {
     display: block;
+}
+
+.spinner-input {
+    width: 60px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    text-align: center;
+    outline: none;
+    font-family: inherit;
+    padding: 0;
+    margin: 0;
+    /* Remove number arrows */
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.spinner-input::-webkit-outer-spin-button,
+.spinner-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
 }

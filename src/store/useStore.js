@@ -18,18 +18,52 @@ const useStore = create(persist(
 
         },
         levelUpCache: [100],
-        addTask: (task) => {
+        editingTask: {
+            id: null,
+            title: '',
+            xp: null,
+            timingType: 'indefinite',
+            timing: {
+
+            }
+        },
+        setEditTaskTiming: (updatedField) => set((state) => {
+            console.log('updatedField', updatedField)
+            return {
+                editingTask: {
+                    ...state.editingTask,
+                    timingType: updatedField.timingType,
+                    timing: {
+                        ...state.editingTask.timing,
+                        ...updatedField.timing
+                    }
+                }
+            }
+        }),
+        setEditTaskTimingType: (type) => set((state) => {
+            return {
+                editingTask: {
+                    ...state.editingTask,
+                    timingType: type
+                }
+            }
+        }),
+        addTask: () => {
             useStore.getState().historyDateManager()
+            const editingTask = useStore.getState().editingTask
             set((state) => ({
-                tasks: [...state.tasks, {
-                    ...task,
-                    id: Date.now(),
-                    isCompleted: false,
-                    xp: task.xp || 0
-                }]
+                tasks: [...state.tasks, editingTask],
+                editingTask: {
+                    id: null,
+                    title: '',
+                    xp: null,
+                    timingType: 'indefinite',
+                    timing: {
+                        every: 1
+                    }
+                }
             }))
         },
-
         toggleTask: (id) => {
             useStore.getState().historyDateManager()
 

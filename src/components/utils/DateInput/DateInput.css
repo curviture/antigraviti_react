@@ -1,0 +1,20 @@
+.date-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    position: relative;
+    width: fit-content;
+}
+
+.date-input-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-left: var(--space-xs);
+}
+
+.date-input-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}

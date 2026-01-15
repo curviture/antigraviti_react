@@ -1,13 +1,40 @@
 import React, { useState } from 'react'
-import { motion } from 'motion/react'
-import Spinner from './Spinner.jsx'
+import clsx from 'clsx';
 
+import { motion } from 'motion/react'
+
+import RegularTiming from './RegularTiming/RegularTiming'
+import NonRegularTiming from './NonRegularTiming/NonRegularTiming'
+import AsDateTiming from './AsDateTiming/AsDateTiming'
+
+import useStore from '../../../../store/useStore'
 
 import './Timing.css'
 
+function TimingTypeButton({ type, children }) {
+
+    const setTimingType = useStore((state) => state.setEditTaskTimingType);
+    const timingType = useStore((state) => state.editingTask.timingType);
+
+    const className = clsx(
+        'btn-ghost btn-lg',
+        timingType === type && 'regular-timing__btn-active'
+    )
+
+    return (
+        <button
+            className={className}
+            onClick={() => setTimingType(type)}
+        >
+            {children}
+        </button>
+    )
+}
+
 
 function Timing() {
-    const [timingType, setTimingType] = useState('regular'); // 'regular' or 'not_regular'
+
+    const timingType = useStore((state) => state.editingTask.timingType);
 
     return (
         <motion.div className="task-input__group"
@@ -19,36 +46,23 @@ function Timing() {
                 <h2>Timing</h2>
             </div>
             <div className="task-timing__inputs">
-                <div className="task-timing__select-group">
-                    <select
-                        className="task-timing__select"
-                        value={timingType}
-                        onChange={(e) => setTimingType(e.target.value)}
-                    >
-                        <option value="regular">Regular</option>
-                        <option value="not_regular">Not Regular</option>
-                    </select>
+                <div className="timing-selector flex">
+                    <h3 className="task_timing_desc">Daily/Weekly/Monthly/Yearly</h3>
+                    <TimingTypeButton type="regular">Regular</TimingTypeButton>
+                    <h3 className="task_timing_desc">Not Regular, with range</h3>
+                    <TimingTypeButton type="not_regular">Not Regular</TimingTypeButton>
+                    <h3 className="task_timing_desc">As Date</h3>
+                    <TimingTypeButton type="as_date">As Date</TimingTypeButton>
                 </div>
 
                 {timingType === 'regular' && (
-                    <div className="task-timing__select-group">
-                        <select className="task-timing__select">
-                            <option value="">Select</option>
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                        </select>
-                    </div>
+                    <RegularTiming />
                 )}
-
                 {timingType === 'not_regular' && (
-                    <div className="task-timing__spinner-wrapper" style={{ width: '100%', marginTop: '1rem' }}>
-                        <Spinner onChange={(date) => console.log('Selected Date:', date)} />
-                        {/* Placeholder for future 'second spinner' logic */}
-                        <div style={{ textAlign: 'center', marginTop: '10px' }}>
-                            <button className="btn-text" style={{ fontSize: '0.8rem', opacity: 0.7 }}>+ Range</button>
-                        </div>
-                    </div>
+                    <NonRegularTiming />
+                )}
+                {timingType === 'as_date' && (
+                    <AsDateTiming />
                 )}
             </div>
         </motion.div>

@@ -1,0 +1,27 @@
+.timing-range-line {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1px;
+}
+
+.timing-range-line-day {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-blue);
+    border: 1px solid var(--color-primary);
+}
+
+.timing-range-line-week {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-blue);
+    border: 1px solid var(--color-primary);
+}
+
+.timing-range-line-month {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-blue);
+    border: 1px solid var(--color-primary);
+}

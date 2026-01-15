@@ -1,0 +1,30 @@
+/* RegularTiming.css */
+
+.regular-timing__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    width: 100%;
+}
+
+.regular-timing__section {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.regular-timing__section h3 {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+    font-weight: 500;
+}
+
+.regular-timing__btn-active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+}

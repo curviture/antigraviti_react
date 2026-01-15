@@ -1,0 +1,41 @@
+/* NonRegularTiming.css */
+
+.non-regular-timing__container {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+    gap: var(--space-md);
+}
+
+.non-regular-timing__range-inputs {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    border: 1px solid var(--border-color);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius-md);
+    width: 100%;
+}
+
+.non-regular-timing__actions {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    transition: opacity var(--transition-base);
+}
+
+.btn-text:hover {
+    opacity: 1;
+    color: var(--text-primary);
+}

@@ -1,4 +1,8 @@
-# React + Vite
+# Antigraviti React
+[Live Demo](https://curviture.github.io/antigraviti_react/)
+
+## Description
+This project is a React application built with Vite, featuring various components and state management.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
